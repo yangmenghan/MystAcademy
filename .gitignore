@@ -37,8 +37,32 @@ proguard/
 # Android Studio captures folder
 captures/
 
-
-#mac
-.DS_Store
-
 node_modules/*
+
+# Built application files
+/*/build/
+
+# Crashlytics configuations
+com_crashlytics_export_strings.xml
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Gradle generated files
+.gradle/
+
+# Signing files
+.signing/
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Secrets
+.gitsecret/keys/random_seed
+/app/src/main/java/com/mystacademy/android/secrets/

@@ -3,7 +3,15 @@ package com.mystacademy.android
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.apollographql.apollo.ApolloCall
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.exception.ApolloException
+import com.mystacademy.android.LoginQueryMutation.Data
+import com.mystacademy.android.secrets.AppConstants
+import com.mystacademy.android.type.LoginInput
+import kotlinx.android.synthetic.main.activity_main.message
+import kotlinx.android.synthetic.main.activity_main.navigation
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         return@OnNavigationItemSelectedListener true
       }
     }
+
+
     false
   }
 
@@ -30,5 +40,29 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    testLoginQuery()
   }
+
+  private val apolloClient = ApolloClientManager.getClient()
+  private fun testLoginQuery() {
+    apolloClient.mutate(
+      LoginQueryMutation(
+        LoginInput.builder().username(AppConstants.TEST_USERNAME).password(
+          AppConstants.TEST_PWD
+        ).build()
+      )
+    )
+      .enqueue(test)
+  }
+}
+
+object test : ApolloCall.Callback<LoginQueryMutation.Data>() {
+  override fun onFailure(e: ApolloException) {
+    e.printStackTrace()
+  }
+
+  override fun onResponse(response: Response<Data>) {
+    Timber.i(response.data().toString())
+  }
+
 }
