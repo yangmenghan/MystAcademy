@@ -1,6 +1,14 @@
 <resources>
-  <string name="app_name">MystAcademy</string>
+  <string name="app_name">Myst Academy</string>
   <string name="title_home">Home</string>
   <string name="title_dashboard">Dashboard</string>
   <string name="title_notifications">Notifications</string>
+  <string name="title_profile">Profile</string>
+
+  <string name="title_username">Username</string>
+  <string name="title_password">Password</string>
+  <string name="action_login_facebook">Facebook Login</string>
+  <string name="action_login">Login</string>
+
+
 </resources>
