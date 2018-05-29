@@ -1,9 +1,9 @@
 package com.mystacademy.android
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.support.constraint.Group
 import android.view.View
 
 class SplashActivity : Activity() {
@@ -15,7 +15,16 @@ class SplashActivity : Activity() {
 
     // Route to main activity
     Handler().postDelayed({
-      startActivity(Intent(this, MainActivity::class.java))
+      switchToLogin()
+
     }, 2000)
   }
+
+  private fun switchToLogin() {
+
+    findViewById<View>(R.id.splash_divider).visibility = View.GONE
+    findViewById<Group>(R.id.login_group).visibility = View.VISIBLE
+
+  }
+  //      startActivity(Intent(this, MainActivity::class.java))
 }

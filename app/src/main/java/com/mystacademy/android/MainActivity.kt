@@ -51,11 +51,11 @@ class MainActivity : AppCompatActivity() {
         ).build()
       )
     )
-      .enqueue(test)
+      .enqueue(testCallback)
   }
 }
 
-object test : ApolloCall.Callback<LoginQueryMutation.Data>() {
+object testCallback : ApolloCall.Callback<LoginQueryMutation.Data>() {
   override fun onFailure(e: ApolloException) {
     e.printStackTrace()
   }
