@@ -11,7 +11,6 @@ import com.mystacademy.android.secrets.AppConstants
 import com.mystacademy.android.type.LoginInput
 import kotlinx.android.synthetic.main.activity_main.message
 import kotlinx.android.synthetic.main.activity_main.navigation
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,7 +61,7 @@ object test : ApolloCall.Callback<LoginQueryMutation.Data>() {
   }
 
   override fun onResponse(response: Response<Data>) {
-    Timber.i(response.data().toString())
+//    Timber.i(response.data().toString())
   }
 
 }

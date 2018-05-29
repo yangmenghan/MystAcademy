@@ -2,7 +2,6 @@ package com.mystacademy.android
 
 import android.app.Application
 import timber.log.Timber
-import timber.log.Timber.DebugTree
 
 /**
  * Created by menghan on 30/03/2018.
@@ -17,7 +16,7 @@ class MystApplication : Application() {
 
   private fun configTimber() {
     if (BuildConfig.DEBUG) {
-      Timber.plant(DebugTree())
+      Timber.plant(Timber.DebugTree())
     }
   }
 }
