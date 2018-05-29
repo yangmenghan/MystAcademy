@@ -9,6 +9,9 @@
   <string name="title_password">Password</string>
   <string name="action_login_facebook">Facebook Login</string>
   <string name="action_login">Login</string>
+  <string name="error_login_username_empty">Username must not be empty</string>
+  <string name="error_login_password_empty">Password must not be empty</string>
+  <string name="error_login_failed">Login failed, please check your credentials</string>
 
 
 </resources>
