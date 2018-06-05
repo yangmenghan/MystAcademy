@@ -1,7 +1,6 @@
-package com.mystacademy.android.utils;
+package com.mystacademy.android.utils
 
-public class Utils {
-     /*
+class Utils/*
 
      // Cheatsheets
 
@@ -15,4 +14,3 @@ public class Utils {
         constraintNew.applyTo(root_cl)
 
         */
-}
