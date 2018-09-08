@@ -65,4 +65,5 @@ Thumbs.db
 
 # Secrets
 .gitsecret/keys/random_seed
-/app/src/main/java/com/mystacademy/android/secrets/
+/app/src/main/java/com/mystacademy/android/secrets/*.kt
+/app/src/main/java/com/mystacademy/android/secrets/*.java
