@@ -3,7 +3,6 @@ package com.mystacademy.android
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.constraint.Group
 import android.view.View
 import com.apollographql.apollo.ApolloCall.Callback
@@ -12,6 +11,7 @@ import com.apollographql.apollo.exception.ApolloException
 import com.mystacademy.android.LoginQueryMutation.Data
 import com.mystacademy.android.R.string
 import com.mystacademy.android.type.LoginInput
+import com.mystacademy.android.utils.ApolloClientManager
 import kotlinx.android.synthetic.main.activity_splash.login_b
 import kotlinx.android.synthetic.main.activity_splash.login_password_et
 import kotlinx.android.synthetic.main.activity_splash.login_password_til
@@ -23,14 +23,17 @@ class SplashActivity : Activity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_splash)
-    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+    window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
     login_b.setOnClickListener { checkLoginInput() }
 
     // Route to main activity
-    Handler().postDelayed({
-      switchToLogin()
+    routeToMain()
 
-    }, 2000)
+    // TODO : Remove line above
+//    Handler().postDelayed({
+//      switchToLogin()
+//
+//    }, 2000)
   }
 
   private fun switchToLogin() {

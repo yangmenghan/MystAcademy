@@ -10,7 +10,7 @@
     >
 
   <android.support.v7.widget.AppCompatImageView
-      android:id="@+id/login_lovo_iv"
+      android:id="@+id/login_logo_iv"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:tint="@color/colorTextNegative"
@@ -122,6 +122,10 @@
       android:layout_height="wrap_content"
       android:visibility="gone"
       app:constraint_referenced_ids="login_userName_til,login_b,login_facebook_b,login_password_til"
+      app:layout_constraintBottom_toTopOf="parent"
+      app:layout_constraintEnd_toStartOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
       />
 
   <View
@@ -136,7 +140,7 @@
       app:layout_constraintBottom_toTopOf="@+id/splash_title_tv"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/login_lovo_iv"
+      app:layout_constraintTop_toBottomOf="@+id/login_logo_iv"
       />
 
 
