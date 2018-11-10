@@ -5,6 +5,25 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.hugo'
 
+def config = new Properties()
+config.load(new FileInputStream(rootProject.file('config.properties')))
+
+task downloadGraphQLSchema {
+  def endPoint = config['graphqlEndPoint']
+  def header = config['graphqlHeader']
+  def localPath = 'src/main/graphql/com/mystacademy/android/schema.json'
+
+  exec {
+    commandLine 'apollo', 'schema:download', localPath,
+        '--endpoint=' + endPoint, '--header', header
+  }
+}
+
+apollo {
+  useSemanticNaming = true
+  customTypeMapping['DateTime'] = "String"
+}
+
 def getVersionCode = { ->
   def ciBuildNumber = System.getenv("BITRISE_BUILD_NUMBER")
   def defaultCiBuildNumber = 0
@@ -55,7 +74,7 @@ android {
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation 'com.android.support:appcompat-v7:26.1.0'
   implementation 'com.android.support:design:26.1.0'
   implementation 'com.android.support.constraint:constraint-layout:1.1.0'
@@ -66,8 +85,8 @@ dependencies {
 
 
   // Network
-  implementation 'com.apollographql.apollo:apollo-runtime:0.5.0'
-  implementation "com.apollographql.apollo:apollo-android-support:0.5.0"
+  implementation 'com.apollographql.apollo:apollo-runtime:1.0.0-alpha2'
+  implementation "com.apollographql.apollo:apollo-android-support:1.0.0-alpha2"
   implementation 'com.squareup.okhttp3:okhttp:3.10.0'
 
   // Logging

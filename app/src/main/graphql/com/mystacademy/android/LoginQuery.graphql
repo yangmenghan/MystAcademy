@@ -1,9 +1,0 @@
-mutation LoginQuery($input: LoginInput!){
-  login(input: $input){
-  token
-  user{
-      username
-  }
-
-  }
-}

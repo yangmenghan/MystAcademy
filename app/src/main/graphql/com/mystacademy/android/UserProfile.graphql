@@ -1,0 +1,24 @@
+query UserProfile{
+   viewer{
+      id
+      username
+      email
+      roles
+      grade {
+        id
+        name
+      }
+      gender
+      avatar {
+        thumbnail
+      }
+      birthDate
+      location
+      ranks {
+         id
+         textMale
+         textFemale
+      }
+      registerDate
+  }
+}

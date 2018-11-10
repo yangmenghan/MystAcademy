@@ -8,3 +8,6 @@ Release : [![release](https://www.bitrise.io/app/5e2e4f52c7299012/status.svg?tok
 
 Android app for Myst Academy
 
+NOTE:
+- This repository use [git-secret](http://git-secret.io/). Please contact the repository owner if you want to contribute to this project
+
