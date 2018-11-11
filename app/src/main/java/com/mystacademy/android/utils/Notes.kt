@@ -1,6 +1,8 @@
 package com.mystacademy.android.utils
 
-class Utils/*
+class Notes
+
+/*
 
      // Cheatsheets
 
@@ -13,4 +15,4 @@ class Utils/*
         TransitionManager.beginDelayedTransition(root_cl)
         constraintNew.applyTo(root_cl)
 
-        */
+*/

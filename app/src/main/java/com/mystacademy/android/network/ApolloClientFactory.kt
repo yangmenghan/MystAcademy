@@ -1,4 +1,4 @@
-package com.mystacademy.android.utils
+package com.mystacademy.android.network
 
 import com.apollographql.apollo.ApolloClient
 import com.github.simonpercic.oklog3.OkLogInterceptor
@@ -12,11 +12,11 @@ import okhttp3.logging.HttpLoggingInterceptor.Level
 import timber.log.Timber
 
 class ApolloClientFactory {
-    fun getClient(sharedPreferencesRepository: SharedPreferencesRepository): ApolloClient {
+    fun createClient(sharedPreferencesRepository: SharedPreferencesRepository): ApolloClient {
         val headerInterceptor = getHeaderInterceptor(sharedPreferencesRepository)
         val logInterceptor = getLogInterceptor()
         val requestLogger = getRequestLogger()
-        val okHttpClient = getClient(logInterceptor, requestLogger, headerInterceptor)
+        val okHttpClient = createClient(logInterceptor, requestLogger, headerInterceptor)
 
         return getApolloClient(okHttpClient)
     }
@@ -44,7 +44,7 @@ class ApolloClientFactory {
         }
     }
 
-    private fun getClient(
+    private fun createClient(
         logInterceptor: OkLogInterceptor,
         logging: HttpLoggingInterceptor,
         headerInterceptor: Interceptor

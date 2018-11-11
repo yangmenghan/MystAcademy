@@ -3,7 +3,7 @@ package com.mystacademy.android
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
-import com.mystacademy.android.modules.login.UserProfileFragment
+import com.mystacademy.android.modules.user_profile.UserProfileFragment
 import kotlinx.android.synthetic.main.main_activity.navigation
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_profile -> {
-                fragmentManager.beginTransaction().replace(R.id.main_content_frame_layout, UserProfileFragment())
+                fragmentManager.beginTransaction().replace(R.id.main_content_frame_layout,
+                    UserProfileFragment()
+                )
                     .commit()
                 return@OnNavigationItemSelectedListener true
             }

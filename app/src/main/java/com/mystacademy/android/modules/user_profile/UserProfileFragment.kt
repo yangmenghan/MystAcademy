@@ -1,4 +1,4 @@
-package com.mystacademy.android.modules.login
+package com.mystacademy.android.modules.user_profile
 
 import android.app.Fragment
 import android.os.Bundle
@@ -8,51 +8,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.apollographql.apollo.ApolloCall.Callback
-import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.exception.ApolloException
 import com.mystacademy.android.R
 import com.mystacademy.android.R.layout
-import com.mystacademy.android.UserProfileQuery
 import com.mystacademy.android.UserProfileQuery.Viewer
-import com.mystacademy.android.repositories.sharedPreferences.SharedPreferencesRepositoryImpl
-import com.mystacademy.android.repositories.user.UserRepositoryImpl
+import com.mystacademy.android.utils.injector.InjectorImpl
 
-class UserProfileFragment : Fragment() {
+class UserProfileFragment : Fragment(), UserProfileContract.View {
     private val handler = Handler()
+    private lateinit var presenter: UserProfilePresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(layout.user_profil_fragment, container, false)
     }
 
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (view == null) return
 
-        val callback = object : Callback<UserProfileQuery.Data>() {
-            override fun onFailure(e: ApolloException) {
-                e.printStackTrace()
-            }
-
-            override fun onResponse(response: Response<UserProfileQuery.Data>) {
-                if (response.data()?.viewer() == null) {
-                    onFailure(ApolloException("Null Response"))
-                    return
-                }
-                handler.post {
-                    displayUserProfile(response.data()!!.viewer()!!, view)
-                }
-            }
-
-        }
-
-        UserRepositoryImpl(SharedPreferencesRepositoryImpl.getInstance(activity.applicationContext!!)).getUserProfile(
-            callback
-        )
+        presenter = UserProfilePresenter(UserProfileDependencies(InjectorImpl.users()))
     }
 
-    private fun displayUserProfile(userProfile: Viewer, view: View) {
+    override fun displayUserProfile(userProfile: Viewer, view: View) {
         val toolbar = view.findViewById<Toolbar>(R.id.profile_toolbar)
         toolbar.title = userProfile.username()
 
